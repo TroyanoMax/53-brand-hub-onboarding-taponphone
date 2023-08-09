@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.*;
 public class FundsTransactionsController {
 
     private static final Logger log = LoggerFactory.getLogger(FundsTransactionsController.class);
-
+    private final FundsTransactionsService service;
     @Autowired
-    private FundsTransactionsService service;
+    public FundsTransactionsController(FundsTransactionsService service) {
+        this.service = service;
+    }
 
     @Operation(summary = "Pull Funds Transactions")
     @ApiResponses(value = {
@@ -65,12 +67,12 @@ public class FundsTransactionsController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @Operation(summary = "Push Funds Transactions")
+    @Operation(summary = "Reverse Funds Transactions")
     @ApiResponses(value = {
 
             @ApiResponse(
                     responseCode = "200",
-                    description = "Push funds transactions.",
+                    description = "reverse funds transactions.",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -78,7 +80,7 @@ public class FundsTransactionsController {
                             )
                     })
     })
-    @PostMapping("/push")
+    @PostMapping("/reverse")
     public ResponseEntity<JsonNode> reverseFundsTransaction(@RequestBody JsonNode request) {
         log.info("Controller for reverse funds transaction");
         JsonNode response = service.reverseFundsTransactions(request);

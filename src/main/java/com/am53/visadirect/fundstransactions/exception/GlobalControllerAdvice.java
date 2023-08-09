@@ -1,8 +1,5 @@
 package com.am53.visadirect.fundstransactions.exception;
 
-//import com.auth0.jwk.JwkException;
-//import com.auth0.jwt.exceptions.JWTCreationException;
-//import com.auth0.jwt.exceptions.JWTVerificationException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.dao.DataAccessException;
@@ -25,12 +22,11 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import javax.validation.ConstraintViolationException;
 import java.net.MalformedURLException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class GlobalControllerAdvice {
 
-    private static final String charactersFormat = "%s: %s";
+    private static final String CHARACTERS_FORMAT = "%s: %s";
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<ApiError> handleError(EntityNotFoundException ex) {
@@ -82,20 +78,6 @@ public class GlobalControllerAdvice {
         return defaultHandleException(HttpStatus.BAD_REQUEST, e, request);
     }
 
-//    @ExceptionHandler(value = {
-//            JWTVerificationException.class,
-//            JWTCreationException.class,
-//            JwkException.class})
-//    public ResponseEntity<ApiError> handleUnauthorized(HttpServletRequest request, Exception e) {
-//        return defaultHandleException(HttpStatus.UNAUTHORIZED, e, request);
-//    }
-
-//    @ExceptionHandler(value = {
-//            EntityNotFoundException.class})
-//    public ResponseEntity<ApiError> handleNotFound(Exception e, HttpServletRequest request) {
-//        return defaultHandleException(HttpStatus.NOT_FOUND, e, request);
-//    }
-
     @ExceptionHandler(MalformedURLException.class)
     public ResponseEntity<ApiError> handleInternalError(HttpServletRequest request, Exception e) {
         return defaultHandleException(HttpStatus.INTERNAL_SERVER_ERROR, e, request);
@@ -109,8 +91,8 @@ public class GlobalControllerAdvice {
                 .stream()
                 .map(FieldError::getField)
                 .flatMap(field -> e.getBindingResult().getFieldErrors(field).stream().map( error ->
-                        String.format(charactersFormat, field, error.getDefaultMessage())
-                )).collect(Collectors.toList());
+                        String.format(CHARACTERS_FORMAT, field, error.getDefaultMessage())
+                )).toList();
         return new ResponseEntity<>(
                 new ApiError(
                         HttpStatus.BAD_REQUEST,
@@ -129,8 +111,8 @@ public class GlobalControllerAdvice {
                 .stream()
                 .map(FieldError::getField)
                 .flatMap(field -> e.getBindingResult().getFieldErrors(field).stream().map( error ->
-                        String.format(charactersFormat, field, error.getDefaultMessage())
-                )).collect(Collectors.toList());
+                        String.format(CHARACTERS_FORMAT, field, error.getDefaultMessage())
+                )).toList();
         return new ResponseEntity<>(
                 new ApiError(
                         HttpStatus.BAD_REQUEST,
@@ -147,8 +129,8 @@ public class GlobalControllerAdvice {
         List<String> errors = e.getConstraintViolations()
                 .stream()
                 .map(error ->
-                        String.format(charactersFormat, error.getPropertyPath().toString(), error.getMessage())
-                ).collect(Collectors.toList());
+                        String.format(CHARACTERS_FORMAT, error.getPropertyPath().toString(), error.getMessage())
+                ).toList();
 
         return new ResponseEntity<>(
                 new ApiError(

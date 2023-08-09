@@ -1,0 +1,5 @@
+visa:
+  direct:
+    username: "HX5OQRQSYA524HPHZ6Y921Bq8T31S5D8Lb7C_Qz0jVRi8UrfM"
+    password: "UuN6YzByx19LFBOkpn9yu6G9Jos6lXMlAsAF"
+    url: "https://sandbox.api.visa.com/visadirect/fundstransfer/v1/"

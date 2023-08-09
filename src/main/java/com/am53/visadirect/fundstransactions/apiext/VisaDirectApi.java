@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -22,11 +23,14 @@ public class VisaDirectApi implements ApiGlobalData<Object, ApiFilterDto>{
 
     private static final Logger logger = LoggerFactory.getLogger(VisaDirectApi.class);
 
-    private static final String URL = "https://sandbox.api.visa.com/visadirect/fundstransfer/v1/";
+    @Value("${visa.direct.url}")
+    private String url;
 
-    private static final String username = "HX5OQRQSYA524HPHZ6Y921Bq8T31S5D8Lb7C_Qz0jVRi8UrfM";
+    @Value("${visa.direct.username}")
+    private String username;
 
-    private static final String password = "UuN6YzByx19LFBOkpn9yu6G9Jos6lXMlAsAF";
+    @Value("${visa.direct.password}")
+    private String password;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -38,7 +42,7 @@ public class VisaDirectApi implements ApiGlobalData<Object, ApiFilterDto>{
             resource = "/" + resource;
         }
 
-        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(URL).path(resource);
+        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(url).path(resource);
 
         if (params != null && !params.isEmpty()) {
             params.forEach(p -> uriBuilder.queryParam(p.getKey(), p.getValue()));
@@ -83,7 +87,7 @@ public class VisaDirectApi implements ApiGlobalData<Object, ApiFilterDto>{
             resource = "/" + resource;
         }
 
-        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(URL).path(resource);
+        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(url).path(resource);
 
         if (params != null && !params.isEmpty()) {
             params.forEach(p -> uriBuilder.queryParam(p.getKey(), p.getValue()));
