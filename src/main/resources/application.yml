@@ -1,5 +1,14 @@
 visa:
   direct:
-    username: "HX5OQRQSYA524HPHZ6Y921Bq8T31S5D8Lb7C_Qz0jVRi8UrfM"
-    password: "UuN6YzByx19LFBOkpn9yu6G9Jos6lXMlAsAF"
-    url: "https://sandbox.api.visa.com/visadirect/fundstransfer/v1/"
+    apiKey: HX5OQRQSYA524HPHZ6Y921Bq8T31S5D8Lb7C_Qz0jVRi8UrfM
+    apiSecret: UuN6YzByx19LFBOkpn9yu6G9Jos6lXMlAsAF
+    url: https://sandbox.api.visa.com/visadirect/fundstransfer/v1/
+server:
+  ssl:
+    key-store: src/main/resources/trust-cert/53_visa_keyAndCertBundle.p12
+    key-store-password: 12345678
+    key-store-type: PKCS12
+    key-alias: 1
+value:
+  algorithm: SunX509
+  protocol: TLS

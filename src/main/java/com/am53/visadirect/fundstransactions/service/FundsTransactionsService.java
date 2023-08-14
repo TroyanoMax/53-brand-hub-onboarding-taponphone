@@ -9,4 +9,5 @@ public interface FundsTransactionsService {
     JsonNode pushFundsTransactions(JsonNode request);
 
     JsonNode reverseFundsTransactions(JsonNode request);
+
 }

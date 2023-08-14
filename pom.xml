@@ -100,6 +100,12 @@
             <version>2.0.1.Final</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.13</version> <!-- Versión actualizada de httpclient -->
+        </dependency>
+
 		<!-- From version 7 on we need to add two dependencies -->
 <!--		<dependency>-->
 <!--			<groupId>com.guardsquare</groupId>-->
