@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Tag(name = "Visa Direct API", description = "API for Visa Direct endpoints.")
+@Tag(name = "Visa Direct Funds API", description = "API for Visa Direct Funds endpoints.")
 @RequestMapping("/funds-transactions/v1")
 public class FundsTransactionsController {
 
