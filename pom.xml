@@ -106,6 +106,16 @@
             <version>4.5.13</version> <!-- Versión actualizada de httpclient -->
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-vault-config</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-vault-config-consul</artifactId>
+        </dependency>
+
 		<!-- From version 7 on we need to add two dependencies -->
 <!--		<dependency>-->
 <!--			<groupId>com.guardsquare</groupId>-->
@@ -131,6 +141,14 @@
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-vault-dependencies</artifactId>
+                <version>3.1.1</version>
+                <scope>import</scope>
+                <type>pom</type>
             </dependency>
         </dependencies>
     </dependencyManagement>

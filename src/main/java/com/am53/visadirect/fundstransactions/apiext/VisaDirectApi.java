@@ -31,8 +31,20 @@ public class VisaDirectApi implements ApiGlobalData<Object, ApiFilterDto>{
 
     private static final Logger logger = LoggerFactory.getLogger(VisaDirectApi.class);
 
-    @Value("${visa.direct.url}")
+    @Value("${visa.direct.url-base}")
     private String url;
+
+    @Value("${visa.direct.url-funds}")
+    private String urlFunds;
+
+    @Value("${visa.direct.url-reverse-funds}")
+    private String urlReverseFunds;
+
+    @Value("${visa.direct.url-foreign-exchage}")
+    private String urlForeignExchange;
+
+    @Value("${visa.direct.url-paai-funds-transf}")
+    private String urlPaaiFundsTransf;
 
     @Value("${visa.direct.apiKey}")
     private String username;
@@ -158,7 +170,7 @@ public class VisaDirectApi implements ApiGlobalData<Object, ApiFilterDto>{
         try {
 
             logger.info("START Sample Code for Two-Way (Mutual) SSL");
-            URL apiUrl = new URL(this.url+resource);
+            URL apiUrl = new URL(this.url+this.urlFunds+resource);
 
             // THIS IS EXAMPLE ONLY how will cert and key look like
             // keystorePath = "visa.jks"
