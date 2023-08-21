@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>br.com.am53.visadirect</groupId>
-    <artifactId>53-visa-direct-funds-transactions</artifactId>
+    <artifactId>53-brand-hub-onboarding-taponphone</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>53-visa-direct-funds-transactions</name>
-    <description>Proyect for Visa Direct Pull Funds Transactions</description>
+    <name>53-brand-hub-onboarding-taponphone</name>
+    <description>Proyect for TapOnPhone Authorization System</description>
 
     <properties>
         <java.version>17</java.version>
