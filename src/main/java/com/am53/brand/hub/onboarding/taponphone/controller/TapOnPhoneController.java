@@ -1,6 +1,7 @@
 package com.am53.brand.hub.onboarding.taponphone.controller;
 
 import com.am53.brand.hub.onboarding.taponphone.dto.TapOnPhoneMerchantRequest;
+import com.am53.brand.hub.onboarding.taponphone.dto.TapOnPhoneMerchantResponse;
 import com.am53.brand.hub.onboarding.taponphone.service.TapOnPhoneService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -33,12 +34,12 @@ public class TapOnPhoneController {
         this.service = service;
     }
 
-    @Operation(summary = "Tap On Phone")
+    @Operation(summary = "Tap On Phone - Create or Update")
     @ApiResponses(value = {
 
             @ApiResponse(
                     responseCode = "200",
-                    description = "Tap On Phone.",
+                    description = "Tap On Phone - Create or Update.",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -50,6 +51,26 @@ public class TapOnPhoneController {
     public ResponseEntity<TapOnPhoneMerchantRequest> createOrUpdateTapOnPhoneMerchant(@RequestBody TapOnPhoneMerchantRequest request) {
         log.info("Controller for pull funds transaction");
         TapOnPhoneMerchantRequest response = service.createOrUpdateTapOnPhone(request);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @Operation(summary = "Tap On Phone - Get a Value")
+    @ApiResponses(value = {
+
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Tap On Phone - Get a Value.",
+                    content = {
+                            @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = TapOnPhoneMerchantResponse.class)
+                            )
+                    })
+    })
+    @GetMapping("/TapOnPhone/{midPaycore}")
+    public ResponseEntity<TapOnPhoneMerchantResponse> findTapOnPhoneMerchant(@PathVariable String midPaycore) {
+        log.info("Controller for pull funds transaction");
+        TapOnPhoneMerchantResponse response = service.findTapOnPhone(midPaycore);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

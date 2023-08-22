@@ -14,4 +14,13 @@ public enum EnumTapOnPhoneMerchant {
 
     private Integer status;
 
+    public static EnumTapOnPhoneMerchant fromStatus(Integer status) {
+        for (EnumTapOnPhoneMerchant enumValue : EnumTapOnPhoneMerchant.values()) {
+            if (enumValue.status.equals(status)) {
+                return enumValue;
+            }
+        }
+        throw new IllegalArgumentException("Invalid status: " + status);
+    }
+
 }

@@ -1,9 +1,11 @@
 package com.am53.brand.hub.onboarding.taponphone.service;
 
 import com.am53.brand.hub.onboarding.taponphone.dto.TapOnPhoneMerchantRequest;
+import com.am53.brand.hub.onboarding.taponphone.dto.TapOnPhoneMerchantResponse;
 import com.am53.brand.hub.onboarding.taponphone.model.MerchantPaycoreTapOnPhone;
 import com.am53.brand.hub.onboarding.taponphone.model.MerchantPaycoreTapOnPhoneId;
 import com.am53.brand.hub.onboarding.taponphone.repository.MerchantPaycoreTapOnPhoneRepository;
+import com.am53.brand.hub.onboarding.taponphone.utils.EnumTapOnPhoneMerchant;
 import org.apache.hc.client5.http.auth.AuthStateCacheable;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -74,6 +76,41 @@ public class TapOnPhoneServiceImpl implements TapOnPhoneService {
         }
 
         return request;
+
+    }
+
+    @Override
+    public TapOnPhoneMerchantResponse findTapOnPhone(String midPaycore) {
+
+        log.info("Find a record");
+
+        TapOnPhoneMerchantResponse tapOnPhoneMerchantResponse = new TapOnPhoneMerchantResponse();
+
+        MerchantPaycoreTapOnPhoneId requestId = new MerchantPaycoreTapOnPhoneId(this.saasId, midPaycore);
+
+        Optional<MerchantPaycoreTapOnPhone> merchantOptional = merchantPaycoreTapOnPhoneRepository.findById(requestId);
+
+        if (merchantOptional.isPresent()) {
+
+            log.info("The record with ID: {} has been found.", midPaycore);
+
+            tapOnPhoneMerchantResponse.setMidPaycore(merchantOptional.get().getId().getMidPaycore());
+
+            String tidPaycore = String.valueOf(merchantOptional.get().getTidPaycore());
+            tapOnPhoneMerchantResponse.setCodigoTerminal(tidPaycore);
+
+            tapOnPhoneMerchantResponse.setStatus(EnumTapOnPhoneMerchant.fromStatus(merchantOptional.get().getStatus()));
+
+            tapOnPhoneMerchantResponse.setCreateDate(merchantOptional.get().getCreateDate());
+
+            return tapOnPhoneMerchantResponse;
+
+        } else {
+
+            log.info("The record with ID: {} was not found.", midPaycore);
+
+            return null;
+        }
 
     }
 
