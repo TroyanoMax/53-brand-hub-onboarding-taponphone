@@ -8,7 +8,7 @@
         <version>3.1.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>br.com.am53.visadirect</groupId>
+    <groupId>br.com.am53.brand.hub.onboarding.taponphone</groupId>
     <artifactId>53-brand-hub-onboarding-taponphone</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>53-brand-hub-onboarding-taponphone</name>
@@ -116,6 +116,12 @@
             <artifactId>spring-cloud-vault-config-consul</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
 		<!-- From version 7 on we need to add two dependencies -->
 <!--		<dependency>-->
 <!--			<groupId>com.guardsquare</groupId>-->
@@ -177,7 +183,7 @@
 <!--                            <obfuscate>true</obfuscate>-->
 <!--                            <proguardInclude>${project.basedir}/proguard.cfg</proguardInclude>-->
 <!--                            <options>-->
-<!--                                <option>-keep public class com.am53.visadirect.fundstransactions.Application { public static void main(java.lang.String[]); }</option>-->
+<!--                                <option>-keep public class com.am53.brand.hub.onboarding.taponphone.Application { public static void main(java.lang.String[]); }</option>-->
 <!--                                &lt;!&ndash; Otras opciones de configuración según tu proguard.cfg &ndash;&gt;-->
 <!--                            </options>-->
 <!--                            <libs>-->

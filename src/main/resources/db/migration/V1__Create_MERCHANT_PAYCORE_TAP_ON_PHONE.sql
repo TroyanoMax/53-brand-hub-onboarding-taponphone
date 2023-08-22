@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS MERCHANT_PAYCORE_TAP_ON_PHONE (
+    SAAS_ID VARCHAR(6) NOT NULL,
+    MID_PAYCORE VARCHAR(15) NOT NULL,
+    TID_PAYCORE NUMBER(15) NOT NULL,
+    STATUS NUMBER(1) NOT NULL DEFAULT 0,
+    CREATE_DATE DATE,
+    PRIMARY KEY (SAAS_ID, MID_PAYCORE)
+    );
+
+-- Agrega comentarios si es necesario
+COMMENT ON COLUMN MERCHANT_PAYCORE_TAP_ON_PHONE.STATUS IS 'Status :(0 - Inactive, 1 - Active)';
+
+alter table MERCHANT_PAYCORE_TAP_ON_PHONE
+    alter column CREATE_DATE DATETIME default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP;
+
+alter table MERCHANT_PAYCORE_TAP_ON_PHONE
+    alter column CREATE_DATE set default current_timestamp();
+
+alter table MERCHANT_PAYCORE_TAP_ON_PHONE
+    alter column CREATE_DATE set on update current_timestamp();
